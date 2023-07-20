@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Switch, Route, Redirect } from "react-router-dom/cjs/react-router-dom";
+
+//components
+import Store from "./components/Store";
+import ProductsDetails from "./components/ProductsDetails";
+
+//context
+import ProductContextProvider from "./context/ProductContextProvider";
+import CardContextProvider from "./context/CardContextProvider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProductContextProvider>
+      <CardContextProvider>
+        <Switch>
+          <Route path="/products/:id" component={ProductsDetails} />
+          <Route path="/products" component={Store} />
+          <Redirect to="/products" />
+        </Switch>
+      </CardContextProvider>
+    </ProductContextProvider>
   );
 }
 
