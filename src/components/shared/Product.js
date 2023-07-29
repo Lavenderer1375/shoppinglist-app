@@ -33,6 +33,7 @@ const Product = ({ productData }) => {
               Add to Card
             </button>
           )}
+          {quantityCount(state, productData.id) > 0 && <span className={styles.counter}>{quantityCount(state, productData.id)}</span>}
           {quantityCount(state, productData.id) > 1 && (
             <button className={styles.smallButton} onClick={() => dispatch({ type: "DECREASE", payload: productData })}>
               -
